@@ -1,7 +1,6 @@
 package com.pluralsight;
 
-import com.pluralsight.finance.BankAccount;
-import com.pluralsight.finance.Valuable;
+import com.pluralsight.finance.*;
 
 import java.math.BigDecimal;
 
@@ -12,7 +11,7 @@ public class FinanceApplication {
 
         // try to deposit money into both accounts
         account1.deposit(100);
-        account2.deposit(100);
+//        account2.deposit(100);
 
         /*
          * 1. Did the deposit work for both accounts? Why or why not?
@@ -33,5 +32,14 @@ public class FinanceApplication {
          *    BankAccount objects, but account2 is labeled as Valuable, and
          *    Valuable only knows about getValue().
          */
+
+        Portfolio p = new Portfolio("My Stuff", "Alina");
+        p.add(new House("Home", 300000, 2010, 1800, 3));
+        p.add(new BankAccount(123, "Pam", new BigDecimal("12500")));
+        p.add(new CreditCard("Visa", "4444", new BigDecimal("2000")));
+
+        System.out.println("Net worth: " + p.getValue());          // 310500.0
+        System.out.println("Most: " + p.getMostValuable().getValue());   // 300000.0
+        System.out.println("Least: " + p.getLeastValuable().getValue()); // -2000.0
     }
 }
